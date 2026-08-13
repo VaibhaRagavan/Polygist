@@ -1,0 +1,8 @@
+streamlit
+boto3
+pdfplumber
+python-dotenv
+pinecone
+langsmith
+ffprobe-python
+requests

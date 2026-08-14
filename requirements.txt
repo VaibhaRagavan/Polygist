@@ -6,4 +6,4 @@ pinecone
 langsmith
 ffprobe-python
 requests
-yt-dlp>=2026.6.10.235405.dev0
+yt-dlp[default]

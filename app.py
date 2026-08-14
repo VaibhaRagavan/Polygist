@@ -97,7 +97,8 @@ with tab1:
                 try:
                     ydl_opts = {
                         'format': 'bestaudio/best',
-                        'outtmpl': os.path.join(tempfile.gettempdir(), f"{st.session_state.session_id}.%(ext)s")
+                        'outtmpl': os.path.join(tempfile.gettempdir(), f"{st.session_state.session_id}.%(ext)s"),
+                        "js_runtimes": {"deno": {}},
                     }
                     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                         info = ydl.extract_info(url, download=True)

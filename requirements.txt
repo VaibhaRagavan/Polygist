@@ -6,3 +6,4 @@ pinecone
 langsmith
 ffprobe-python
 requests
+yt_dlp

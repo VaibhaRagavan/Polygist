@@ -4,19 +4,20 @@ import time
 from langsmith import traceable
 from dotenv import load_dotenv
 load_dotenv()
+
 s3=boto3.client("s3",region_name="eu-west-1")
 transcribe=boto3.client("transcribe",region_name="eu-west-1")
 
 bucket_name=os.getenv("S3_BUCKET_NAME")
 @traceable
-def upload_to_s3(file,sessionid,bucket_name):
-    ext=file.name.split(".")[-1]
+def upload_to_s3(file_path,ext,sessionid,bucket_name):
     file_name=f"{sessionid}.{ext}"
-    file_bytes=file.read()
-    s3.put_object(
-        Bucket=bucket_name,
-        Key=file_name,
-        Body=file_bytes
+    with open(file_path,"rb") as f:
+        file_bytes=f.read()
+        s3.put_object(
+            Bucket=bucket_name,
+            Key=file_name,
+            Body=file_bytes
     )
     print(f"Successfully created {file_name} in {bucket_name}")
     return file_name

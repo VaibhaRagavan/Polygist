@@ -7,9 +7,7 @@ bedrock=boto3.client('bedrock-runtime', region_name='us-east-1')
 #Image extraction 
 @traceable
 
-def image_extraction(image):
-    image_bytes=image.read()
-    image_format=image.type.split("/")[-1]
+def image_extraction(image_bytes,image_format):
     model_id="us.amazon.nova-2-lite-v1:0"
     prompt=f"Desribe this image in 5line"
     message=[{

@@ -5,10 +5,11 @@ load_dotenv()
 from pinecone import Pinecone
 from datetime import datetime,timezone
 from langsmith import traceable
+import streamlit as st
 
 bedrock=boto3.client("bedrock-runtime",region_name="us-east-1")
 
-key=os.getenv("PINECONE_API_KEY")
+key=os.getenv("PINECONE_API_KEY") or st.secrets["PINECONE_API_KEY"]
 pc=Pinecone(api_key= key)
 Index_Name="polygist"
 index=pc.Index(Index_Name)

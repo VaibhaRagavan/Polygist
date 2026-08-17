@@ -10,6 +10,33 @@ A multimodal summarization app built with Streamlit. Upload a PDF, image, audio/
 - Session-scoped Pinecone namespaces, with scheduled cleanup via GitHub Actions
 - Full request tracing via LangSmith (`@traceable`)
 
+  
+## Project Structure
+
+```
+Polygist/
+├── app.py            # Streamlit UI + orchestration — routes input (file/URL) to the
+│                      # right pipeline for both tabs, holds session_state
+├── extraction.py      # Bedrock calls — image_extraction (single-shot image summary),
+│                      # pdf_extraction (pdfplumber text pull), generate_summary
+│                      # (domain-aware for video, concise for everything else)
+├── transcribe.py       # AWS Transcribe + S3 — upload_to_s3, start_transcription_job,
+│                       # get_transcription (polling), delete_from_s3 (cleanup)
+├── validation.py        # ffprobe wrapper — get_duration, used to enforce the
+│                        # 30-minute audio/video cap before transcription
+├── pc_store.py            # Pinecone + embeddings — Chunk_Text, Embedding (Titan v2),
+│                          # Vector_Store (batched upsert), retrive (top-k query),
+│                          # all scoped to session_id namespaces
+├── qa.py                  # Bedrock call for Q&A tab — answer() takes a query + 
+│                          # retrieved context and returns a grounded response
+├── cleanup/                # Scheduled Pinecone namespace cleanup (cron job, TTL via
+│                          # created_at metadata)
+├── .github/                # GitHub Actions workflows (scheduled cleanup, UTC cron)
+├── test_data/              # Sample files for local testing
+├── requirements.txt        # Python deps
+├── packages.txt            # apt deps for Streamlit Cloud (ffmpeg)
+└── .env                    # S3_BUCKET_NAME, PINECONE_API_KEY, LANGSMITH_API_KEY (not committed)
+```
 ## Flow
 
 ```mermaid

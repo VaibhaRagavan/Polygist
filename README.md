@@ -1,5 +1,5 @@
 # Polygist
-
+![Polygist demo](polygist_demo.gif)
 A multimodal summarization app built with Streamlit. Upload a PDF, image, audio/video file, or paste a URL (including YouTube) and get an AI-generated summary — or ask questions against a PDF using RAG.
 
 ## Features
@@ -125,4 +125,17 @@ streamlit run app.py
 - [ ] Replace yt-dlp with `youtube-transcript-api` for cloud compatibility
 - [ ] Per-stage pipeline timing to diagnose slow processing
 - [ ] Chat memory (last ~10 exchanges) in Q&A tab
-- [ ] Adding Q/A for image and videos 
+- [ ] Adding Q/A for image and videos
+
+## Example
+
+**Summary tab** — upload a video, audio file, PDF, image, or paste a URL:
+
+> Uploaded `Life_as_a_Teacher.mp4` (10.2MB) → transcribed via AWS Transcribe → summarized via Bedrock.
+
+**Q&A tab** — upload a PDF once, then ask follow-up questions grounded in its content:
+
+> **Q:** *(PDF on AWS uploaded)*
+> **A:** AWS provides a highly reliable, scalable, low-cost infrastructure platform in the cloud that powers hundreds of thousands of businesses in 190 countries around the world. It offers a broad set of services including compute power, database, storage, applications, and other IT resources through a cloud services platform via the internet with pay-as-you-go pricing. AWS also provides services for networking and content delivery, IoT, game tech, and more, enabling businesses to respond quickly to changing requirements without large upfront investments in hardware.
+>
+> **Follow-up Q:** does aws support machine learning

@@ -3,7 +3,10 @@
 
 A multimodal summarization app built with Streamlit. Upload a PDF, image, audio/video file, or paste a URL (including YouTube) and get an AI-generated summary — or ask questions against a PDF using RAG.
 
+**[🔗 Live Demo](https://polygist-glodyt8qrvc8rxm29jnz2k.streamlit.app/)**
+
 ![Polygist demo](polygist_demo.gif)
+
 
 
 ## Features
